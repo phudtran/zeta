@@ -25,7 +25,6 @@ from project import db
 from common.rpc import TrnRpc
 
 logger = logging.getLogger()
-
 config.load_incluster_config()
 obj_api = client.CustomObjectsApi()
 nodes_blueprint = Blueprint('nodes', __name__)
