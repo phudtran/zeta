@@ -62,7 +62,7 @@ response=$(curl -H 'Content-Type: application/json' -X POST \
 zgc_id=$(echo $response | sed 's/\\[tn]//g' | cut -d':' -f 8 | tr -d '"}' | xargs)
 echo "REST API: Test ZGC zgc0 created with UUID: $zgc_id returned"
 
-# Register ZGC nodes containers in KIND deployment
+# Register node containers in KIND deployment
 inf_control="eth0"
 inf_zgc="eth1"
 inf_tenant="eth2"
@@ -76,15 +76,15 @@ for node in "${nodes[@]}"; do
     ip_zgc=$(docker exec $node ip addr show $inf_zgc | grep "inet\\b" | awk '{print $2}' | cut -d/ -f1)
     mac_zgc=$(docker exec $node ip addr show $inf_zgc | grep "link/ether\\b" | awk '{print $2}' | cut -d/ -f1)
     body='{"zgc_id":"'"$zgc_id"'",
-    "description":"'"$node"'",
-    "name":"'"$node"'",
-    "ip_control":"'"$ip_control"'",
-    "id_control":"ubuntu",
-    "pwd_control":"changeme",
-    "inf_tenant":"'"$inf_tenant"'",
-    "mac_tenant":"'"$mac_tenant"'",
-    "inf_zgc":"'"$inf_zgc"'",
-    "mac_zgc":"'"$mac_zgc"'"}'
+        "description":"'"$node"'",
+        "name":"'"$node"'",
+        "ip_control":"'"$ip_control"'",
+        "id_control":"ubuntu",
+        "pwd_control":"changeme",
+        "inf_tenant":"'"$inf_tenant"'",
+        "mac_tenant":"'"$mac_tenant"'",
+        "inf_zgc":"'"$inf_zgc"'",
+        "mac_zgc":"'"$mac_zgc"'"}'
     curl -H 'Content-Type: application/json' -X POST -d "$body" $manager_ip:80/nodes
     echo "REST API: ZGC node $node registered to zgc0"
 done
