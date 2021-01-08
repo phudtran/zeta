@@ -3,9 +3,9 @@
 
 # Authors: Bin Liang <@liangbin>
 #
-# Summary: Base image for Zeta droplet node container in KIND deployment as 
+# Summary: Base image for Zeta droplet node container in KIND deployment as
 #          fwnetworking/zeta_droplet:latest
-# 
+#
 
 FROM ubuntu:18.04@sha256:646942475da61b4ce9cc5b3fadb42642ea90e5d0de46111458e100ff2c7031e6
 
@@ -20,5 +20,6 @@ RUN apt-get update && \
     iputils-ping \
     ethtool \
     curl \
+    tcpdump \
     && apt-get clean \
     && ln -snf /sys/fs/bpf /bpffs
