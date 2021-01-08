@@ -216,8 +216,9 @@ static __inline int trn_process_inner_ip(struct transit_packet *pkt)
 	trn_set_dst_mac(pkt->inner_eth, ep->mac);
 
 	/* Keep overlay header, update outer header destinations */
-	trn_set_src_dst_ip_csum(pkt->ip, pkt->ip->saddr, ep->hip,
+	trn_set_src_dst_ip_csum(pkt->ip, pkt->ip->daddr, ep->hip,
 				pkt->data_end);
+	trn_set_src_mac(pkt->eth, pkt->eth->h_dest);
 	trn_set_dst_mac(pkt->eth, ep->hmac);
 
 	bpf_debug("[Transit:%d] TX: Forward IP pkt from vni:%d ip:0x%x\n",
