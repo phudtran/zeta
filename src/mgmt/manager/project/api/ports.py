@@ -31,8 +31,10 @@ ports_blueprint = Blueprint('ports', __name__)
 
 eps = []
 
+
 def ports_update_eps_config():
-    eps_list = [eps[i:i + EP_BATCH_MAX] for i in range(0, len(eps), EP_BATCH_MAX)]
+    eps_list = [eps[i:i + EP_BATCH_MAX]
+                for i in range(0, len(eps), EP_BATCH_MAX)]
     for eps_chunk in eps_list:
         eps_conf = {
             'size': len(eps_chunk),
@@ -44,6 +46,7 @@ def ports_update_eps_config():
             rpc.update_ep(eps_conf)
             del rpc
     eps.clear()
+
 
 @ports_blueprint.route('/ports', methods=['GET', 'POST'])
 def all_ports():
@@ -106,7 +109,8 @@ def all_ports():
         db.session.commit()
         response_object = portList
         end_time = time.time()
-        logger.debug(f'Zeta took {end_time - start_time} seconds to make {amount_of_ports} ports')
+        logger.debug(
+            f'Zeta took {end_time - start_time} seconds to make {amount_of_ports} ports')
         ports_update_eps_config()
         status_code = 201
     else:

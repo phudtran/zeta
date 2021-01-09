@@ -22,6 +22,7 @@ from project.api.models import Node, Zgc
 from project import db
 from project.api.utils import getGWsFromIpRange, get_mac_from_ip
 from project.api.settings import activeZgc, zgc_cidr_range, node_ips
+from project import db
 from common.rpc import TrnRpc
 
 logger = logging.getLogger()
@@ -74,6 +75,7 @@ def create_droplet(name, ip, mac, itf, node_ip, network, zgc_id):
     spec['itf'] = itf
     spec['network'] = network
     spec['zgc_id'] = zgc_id
+    spec['ip_control'] = node_ip
     droplet_body['metadata'] = meta_data
     droplet_body['spec'] = spec
     droplet_body['apiVersion'] = 'zeta.com/v1'
