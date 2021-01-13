@@ -47,13 +47,8 @@ def all_vpcs():
 
         response_object = extendVpcResp(vpc)
         end_time = time.time()
-<<<<<<< HEAD
         logger.debug(f'Zeta took {end_time - start_time} seconds to make a VPC')
         status_code = 201
-=======
-        logger.debug(
-            f'Zeta took {end_time - start_time} seconds to make a VPC')
->>>>>>> Fix db import error, manager log to stdout
     else:
         response_object = []
         for vpc in Vpc.query.all():

@@ -41,13 +41,8 @@ def all_zgcs():
             settings.activeZgc["ip_end"] = post_data["ip_end"]
             settings.activeZgc["port_ibo"] = post_data["port_ibo"]
         end_time = time.time()
-<<<<<<< HEAD
         logger.debug(f'Zeta took {end_time - start_time} seconds to make a ZGC')
         status_code = 201
-=======
-        logger.debug(
-            f'Zeta took {end_time - start_time} seconds to make a ZGC')
->>>>>>> Fix db import error, manager log to stdout
     else:
         response_object = [zgc.to_json() for zgc in Zgc.query.all()]
     return jsonify(response_object), status_code

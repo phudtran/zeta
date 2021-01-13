@@ -16,7 +16,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." >/dev/null 2>&1 && pwd)"
 . $ROOT/deploy/install/common.sh
 
 STAGE=${1:-dev}
-DROPLET_NODES=${2:-12}
+DROPLET_NODES=${2:-1}
 reg_name='local-kind-registry'
 reg_port='5000'
 
@@ -86,7 +86,7 @@ for node in "${nodes[@]}"; do
         "inf_zgc":"'"$inf_zgc"'",
         "mac_zgc":"'"$mac_zgc"'"}'
     curl -H 'Content-Type: application/json' -X POST -d "$body" $manager_ip:80/nodes
-    echo "REST API: ZGC node $node registered to zgc0"
+    echo "REST API: ZGC node $node registered to $zgc_id"
 done
 
 objects=("dfts" "chains" "ftns" "fwds" "droplets")
