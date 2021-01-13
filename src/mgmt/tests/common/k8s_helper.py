@@ -21,6 +21,7 @@ class K8sHelper:
         self.manager_pod_name = self.run_cmd(
             "kubectl get pods | grep zeta-manager | awk '{print $1}'")
 
+    @classmethod
     def run_cmd(self, cmd_list):
         result = subprocess.Popen(cmd_list, shell=True, stdout=subprocess.PIPE)
         text = result.stdout.read().decode().rstrip()

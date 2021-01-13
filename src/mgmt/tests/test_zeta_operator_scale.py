@@ -6,7 +6,6 @@ import json
 from time import sleep
 
 logger = logging.getLogger()
-logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
 
 class test_zeta_operator_scale(unittest.TestCase):
