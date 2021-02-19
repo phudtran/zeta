@@ -39,7 +39,7 @@ logger = logging.getLogger()
 def run_cmd(cmd):
     result = subprocess.Popen(
         cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    text = result.stdout.read().decode()
+    text = result.stdout.read().decode(errors='replace')
     returncode = result.returncode
     return (returncode, text)
 

@@ -16,7 +16,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." >/dev/null 2>&1 && pwd)"
 . $ROOT/deploy/install/common.sh
 
 STAGE=${1:-dev}
-DROPLET_NODES=${2:-1}
+DROPLET_NODES=${2:-12}
 reg_name='local-kind-registry'
 reg_port='5000'
 

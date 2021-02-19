@@ -17,5 +17,5 @@ class CONSTANTS:
 
 def run_cmd(cmd_list):
     result = subprocess.Popen(cmd_list, shell=True, stdout=subprocess.PIPE)
-    text = result.stdout.read().decode().rstrip()
+    text = result.stdout.read().decode(errors='replace').rstrip()
     return text

@@ -18,6 +18,7 @@ def ftn_delete(task, ftn, name, body, spec, diff):
     droplet_obj = droplets_opr.store.get_obj(ftn.droplet, KIND.droplet)
 
     # Don't need to run delete_ftn, unload of XDP cleans it up.
-    droplet_obj.rpc.unload_transit_xdp()
+    # Currently unloads both ftn and fwd, need to discuss
+    # droplet_obj.rpc.unload_transit_xdp()
     droplets_opr.unassign_droplet(ftn)
     return ftn

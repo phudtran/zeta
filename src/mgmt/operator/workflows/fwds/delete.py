@@ -23,6 +23,7 @@ def fwd_delete(task, fwd, name, body, spec, diff):
         fwd = fwds_opr.get_stored_obj(name, spec)
     droplet_obj = droplets_opr.store.get_obj(fwd.droplet, KIND.droplet)
     # Don't need to run delete_dft and delete chain, unload of XDP cleans it up
-    droplet_obj.rpc.unload_transit_xdp()
+    # Currently unloads both ftn and fwd, need to discuss
+    # droplet_obj.rpc.unload_transit_xdp()
     droplets_opr.unassign_droplet(fwd)
     return fwd
